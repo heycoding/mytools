@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    Lorem, ipsum dolor. // lorem
+    <div class="test"></div> //.test
+    <div id="app"></div>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <div id="app4"></div>
+    <div id="app5"></div>
+    <div id="app6"></div>
+    <script>
+        let hello = React.createElement('h1',{},'Hello World')
+        ReactDOM.render(hello, document.getElementById('app'))
+    </script>
+
+    <script type="text/babel">
+        let name = 'test'
+        let template = <h1 className='red'>Hello {name}</h1>
+        ReactDOM.render(template, document.getElementById('app1'))
+    </script>
+
+    <script type="text/babel">
+        let name2 = 'test2'
+        function Template2() {
+            return  <h1 className='red'>Hello {name2}</h1>
+        }
+        ReactDOM.render(<Template2/>, document.getElementById('app2'))
+    </script>
+
+    <script type="text/babel">
+        function Template3(props) {
+            return  <h1 className='red'>Hello {props.username}</h1>
+        }
+        ReactDOM.render(<Template3 username='chenyu'/>, document.getElementById('app3'))
+    </script>
+
+    <script type="text/babel">
+        class Template4 extends React.Component {
+            render() {
+                return <div> <h1 className='red'>Hello {this.props.username},  {this.props.password}</h1> </div>
+            }
+        }
+        ReactDOM.render(<Template4 username='chenyu4' password='password1'/>, document.getElementById('app4'))
+    </script>
+
+    <script type="text/babel">
+        class Template5 extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    name: 'cfsd',
+                    age: 15
+                }
+                this.updateInfo2 = this.updateInfo2.bind(this)
+            }
+            updateInfo = () => {
+                    this.setState({
+                        name:'cy1'
+                    })
+                }
+            updateInfo2() {
+                this.setState({
+                    name:'cy2'
+                })
+            }
+            updateInfo3() {
+                this.setState({
+                    name:'cy3'
+                })
+            }
+            render() {
+                return <div> 
+                    <h1 className='red'>Hello {this.state.name}, age: {this.state.age},sex: {this.props.sex}</h1>
+                {   /* <button onClick={this.updateInfo}>修改数据</button>*/}
+                    <button onClick={this.updateInfo}>修改数据</button>
+                    <button onClick={this.updateInfo2}>修改数据2</button>
+                    <button onClick={()=>this.updateInfo3()}>修改数据3</button>
+                    </div>
+            }
+        }
+        ReactDOM.render(<Template5 sex='male'/>, document.getElementById('app5'))
+    </script>
+
+<script type="text/babel">
+    class Template6 extends React.Component {
+        state = {
+            list: [1,2,3,4,5,6]
+        }
+        render() {
+            const arr = this.state.list
+            const lists = []
+            // for (let i=0; i<arr.length; i++) {
+            //     let li = <li key={arr[i]}>{arr[i]}</li>
+            //     lists.push(li)
+            // }
+            arr.map((item, index)=> {
+                let li = <li key={index}>{item}</li>
+                lists.push(li)
+            })
+
+            return <div> 
+                        <ul>
+                            {lists}
+                        </ul>
+                </div>
+        }
+    }
+    ReactDOM.render(<Template6/>, document.getElementById('app6'))
+</script>
+
+
+
+</body>
+</html>
