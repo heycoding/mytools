@@ -1,10 +1,12 @@
-package org.example.exam.s51.webapplication.q5.model;
+package com.heycoding.springbootdemo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
 @Entity
 public class Product {
     @Id
@@ -18,4 +20,6 @@ public class Product {
     private int currentStock;
     private int reorderLevel;
     private double unitPrice;
+    @OneToMany(mappedBy = "product")
+    private List<Item> item;
 }

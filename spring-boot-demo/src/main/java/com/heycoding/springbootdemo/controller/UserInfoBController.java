@@ -7,14 +7,11 @@ import com.heycoding.springbootdemo.repository.UserInfoRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("userinfo")
-public class UserInfoController {
+@RequestMapping("userinfob")
+public class UserInfoBController {
 
     @Autowired
     private UserInfoRepository repository;
@@ -23,10 +20,13 @@ public class UserInfoController {
 
 
     @GetMapping
-    public Result findAllUsers(@RequestParam String name, @RequestParam String pwd) {
-        List<UserInfo> all = repository.findAll();
-        all = repository2.getUserInfoByName(name, pwd);
-        return Result.success(all);
+    public Result<UserInfo> findAllUsers() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setFirstname("Fname");
+        if (userInfo != null) {
+            return Result.fail("null value");
+        }
+        return Result.success(userInfo);
     }
 
 }

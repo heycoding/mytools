@@ -7,6 +7,7 @@ import jakarta.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
@@ -25,12 +26,17 @@ public class UserInfoRepository2 {
         }
         TypedQuery<UserInfo> query = entityManager.createQuery(hql, UserInfo.class);
 
+        String hql2 = "select count(1) from UserInfo a where a.id in(select u.id from UserInfo u where 1=1)";
+        String hql3 = "select count(a) from (select u.id from UserInfo u where 1=1) as a";
+        TypedQuery<UserInfo> query2 = entityManager.createQuery(hql3, UserInfo.class);
+
         if(StringUtils.isNotEmpty(name)) {
             query.setParameter("username1", name);
         }
         if(StringUtils.isNotEmpty(pwd)) {
             query.setParameter("pwd", pwd);
         }
+
         return query.getResultList();
     }
 

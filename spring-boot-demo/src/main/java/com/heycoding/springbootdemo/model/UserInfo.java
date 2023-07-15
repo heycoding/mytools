@@ -1,10 +1,9 @@
 package com.heycoding.springbootdemo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -13,7 +12,7 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(Integer id, String username, String password) {
+    public UserInfo(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -21,14 +20,13 @@ public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Long id;
     private String username;
-
     private String firstname;
-
     private String lastname;
-
     private String password;
+
+    @OneToMany(mappedBy = "userInfo")
+    private List<Order> order;
 
 }

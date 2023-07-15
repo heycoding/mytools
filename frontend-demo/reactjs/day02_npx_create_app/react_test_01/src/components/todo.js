@@ -24,6 +24,7 @@ export default class todo extends Component {
                     }
                 </ul>
                {this.state.list.length <=0 ? <div>无</div> : null}
+               {this.state.list.length <=0 && <div>无</div>}
             </div>
         )
     }

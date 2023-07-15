@@ -6,14 +6,14 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Entity
-public class OrderInfo {
+@Entity(name = "order_info")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderId;
 
-    @OneToOne
+    @ManyToOne
     private UserInfo userInfo;
 
     private double memberDiscount;
@@ -22,6 +22,6 @@ public class OrderInfo {
     private String paymentStatus;
     private String urls;
 
-    @OneToMany(mappedBy = "orderInfo")
+    @OneToMany(mappedBy = "order")
     private List<Item> items;
 }

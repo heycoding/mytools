@@ -1,19 +1,21 @@
-package org.example.exam.s51.webapplication.q5.model;
+package com.heycoding.springbootdemo.model;
 
-import javax.persistence.*;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
 @Entity
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String itemId;
-    @OneToMany
+    @ManyToOne
     private Order order;
-    @OneToOne
+    @ManyToOne
     private Product product;
     private int orderQuantity;
     private double subTotal;
-
 
 }

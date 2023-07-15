@@ -5,10 +5,7 @@ import com.heycoding.springbootdemo.model.UserInfo;
 import com.heycoding.springbootdemo.repository.UserInfoRepository;
 import com.heycoding.springbootdemo.repository.UserInfoRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,16 @@ public class UserInfoController {
         List<UserInfo> all = repository.findAll();
         all = repository2.getUserInfoByName(name, pwd);
         return Result.success(all);
+    }
+
+    @PostMapping
+    public Result saveUser() {
+        UserInfo userInfo =new UserInfo();
+        userInfo.setFirstname("chen");
+        userInfo.setLastname("yu");
+        userInfo.setPassword("chenyu123");
+        repository.save(userInfo);
+        return Result.success();
     }
 
 }
