@@ -12,7 +12,7 @@ public class Item {
     private Long id;
     private String itemId;
     @ManyToOne
-    private Order order;
+    private OrderInfo orderInfo;
     @ManyToOne
     private Product product;
     private int orderQuantity;

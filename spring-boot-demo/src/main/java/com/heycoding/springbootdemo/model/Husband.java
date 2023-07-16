@@ -1,0 +1,17 @@
+package com.heycoding.springbootdemo.model;
+
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+public class Husband {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    @ManyToMany(mappedBy = "husbands")
+    private List<Wife> wives;
+
+}

@@ -27,6 +27,6 @@ public class UserInfo {
     private String password;
 
     @OneToMany(mappedBy = "userInfo")
-    private List<Order> order;
+    private List<OrderInfo> orderInfo;
 
 }

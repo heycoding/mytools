@@ -3,11 +3,12 @@ package com.heycoding.springbootdemo.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity(name = "order_info")
-public class Order {
+@Entity
+public class OrderInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +22,9 @@ public class Order {
     private double total;
     private String paymentStatus;
     private String urls;
+    private Date createDate;
+    private String location;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "orderInfo")
     private List<Item> items;
 }
